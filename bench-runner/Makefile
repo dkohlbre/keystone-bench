@@ -1,18 +1,20 @@
 CC = riscv64-unknown-linux-gnu-g++
 OBJCOPY = riscv64-unknown-linux-gnu-objcopy
 
-SDK_LIB_DIR =$(KEYSTONE_DIR)/sdk/lib
+SDK_LIB_DIR =$(KEYSTONE_DIR)/sdk/build64/lib
 SDK_HOST_LIB = $(SDK_LIB_DIR)/libkeystone-host.a
 SDK_EDGE_LIB = $(SDK_LIB_DIR)/libkeystone-edge.a
 SDK_VERIFIER_LIB = $(SDK_LIB_DIR)/libkeystone-verifier.a
 
-SDK_INCLUDE_HOST_DIR = $(SDK_LIB_DIR)/host/include
-SDK_INCLUDE_EDGE_DIR = $(SDK_LIB_DIR)/edge/include
-SDK_INCLUDE_VERIFIER_DIR = $(SDK_LIB_DIR)/verifier
+SDK_INCLUDE_HOST_DIR = $(KEYSTONE_DIR)/sdk/build64/include/host
+SDK_INCLUDE_EDGE_DIR = $(KEYSTONE_DIR)/sdk/build64/include/edge
+SDK_INCLUDE_VERIFIER_DIR = $(KEYSTONE_DIR)/sdk/build64/include/verifier
+SDK_INCLUDE_COMMON_DIR = $(KEYSTONE_DIR)/sdk/build64/include
+SDK_INCLUDE_APP_DIR = $(KEYSTONE_DIR)/sdk/build64/include/app
 
 
 RUNNER=bench-runner.riscv
-CCFLAGS = -I$(SDK_INCLUDE_HOST_DIR) -I$(SDK_INCLUDE_EDGE_DIR) -I$(SDK_INCLUDE_VERIFIER_DIR) -std=c++11
+CCFLAGS = -I$(SDK_INCLUDE_HOST_DIR) -I$(SDK_INCLUDE_EDGE_DIR) -I$(SDK_INCLUDE_VERIFIER_DIR) -I$(SDK_INCLUDE_COMMON_DIR) -std=c++11
 LDFLAGS = -L$(SDK_LIB_DIR)
 
 SRCS = $(patsubst %.riscv, %.cpp, $(RUNNER))

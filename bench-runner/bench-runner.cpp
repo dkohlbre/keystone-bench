@@ -73,8 +73,8 @@ int main(int argc, char** argv)
     }
   }
 
-  Keystone enclave;
-  Params params;
+  Keystone::Enclave enclave;
+  Keystone::Params params;
   unsigned long cycles1,cycles2,cycles3,cycles4;
 
   params.setFreeMemSize(freemem_size);
